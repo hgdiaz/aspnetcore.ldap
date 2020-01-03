@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Log out";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <h4 class="text-success">You have logged out.</h4>
+        <h5 class="text-muted">Please click the button for the main page</h5>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-block btn-success btn-block" })
+            </div>
+        </div>
+
+
+        <h5 class="text-muted"> <small>aspnetcore.ldap sample</small> </h5>
+    </div>
+</div>
