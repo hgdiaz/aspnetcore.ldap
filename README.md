@@ -11,4 +11,4 @@ Right now it only Authenticates against AD. The next step is the implementation 
 
 ## Meta
 
-This is an open source project that welcomes contributions/suggestions/bug reports from those who use it. If you have any ideas on how to improve the library, please [post an issue here on github](https://github.com/hgdiaz/aspnetcore.ldap/issues). 
+This is an open source project that welcomes contributions/suggestions/bug reports from those who use it. If you have any ideas on how to improve the sample, please [post an issue here on github](https://github.com/hgdiaz/aspnetcore.ldap/issues). 
