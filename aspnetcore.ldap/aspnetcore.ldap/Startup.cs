@@ -59,7 +59,14 @@ namespace aspnetcore.ldap
                     options.ReturnUrlParameter = cookiesConfig.ReturnUrlParameter;
                 });
 
-            services.AddAuthorization();
+            //policies are added in the account controller, after a valid login
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Require.Ldap.User", policy =>
+                                  policy.RequireClaim("aspnetcore.ldap.user", "true")
+                                        .AddAuthenticationSchemes(CookieAuthenticationDefaults.AuthenticationScheme)
+                                      );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

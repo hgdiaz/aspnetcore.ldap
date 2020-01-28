@@ -57,13 +57,17 @@ namespace aspnetcore.ldap.Controllers
                             userClaims.Add(new Claim(ClaimTypes.Role, role));
                         }
 
-                        var principal = new ClaimsPrincipal(
-                            new ClaimsIdentity(userClaims, _authService.GetType().Name)
-                        );
+                        //we can add custom claims based on the AD user's groups
+                        var claimsIdentity = new ClaimsIdentity(userClaims, _authService.GetType().Name);
+                        if (Array.Exists(user.Roles, s => s.Contains("aspnetcore.ldap.user")))
+                        {
+                            //if in the AD the user belongs to the aspnetcore.ldap.user group, we add a claim
+                            claimsIdentity.AddClaim(new Claim("aspnetcore.ldap.user", "true"));
+                        }                        
 
                         await HttpContext.SignInAsync(
                           CookieAuthenticationDefaults.AuthenticationScheme,
-                            principal,
+                            new ClaimsPrincipal(claimsIdentity),
                             new AuthenticationProperties
                             {
                                 IsPersistent = model.RememberMe
@@ -75,8 +79,7 @@ namespace aspnetcore.ldap.Controllers
                             : "/");
                     }
 
-                    ModelState.AddModelError("", @"Your username or password
-                        is incorrect. Please try again.");
+                    ModelState.AddModelError("", @"Your username or password is incorrect. Please try again.");
                 }
                 catch (Exception ex)
                 {
