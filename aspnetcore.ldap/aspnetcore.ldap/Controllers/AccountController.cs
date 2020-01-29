@@ -59,9 +59,9 @@ namespace aspnetcore.ldap.Controllers
 
                         //we can add custom claims based on the AD user's groups
                         var claimsIdentity = new ClaimsIdentity(userClaims, _authService.GetType().Name);
-                        if (Array.Exists(user.Roles, s => s.Contains("aspnetcore.ldap.user")))
+                        if (Array.Exists(user.Roles, s => s.Contains("aspnetcore.ldap")))
                         {
-                            //if in the AD the user belongs to the aspnetcore.ldap.user group, we add a claim
+                            //if in the AD the user belongs to the aspnetcore.ldap group, we add a claim
                             claimsIdentity.AddClaim(new Claim("aspnetcore.ldap.user", "true"));
                         }                        
 
