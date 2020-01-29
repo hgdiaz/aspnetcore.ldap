@@ -39,3 +39,9 @@ Also, we must create a class for mapping values from appsettings.json so we can 
         public string SearchFilter { get; set; }
     }
 Then we must create one of the most important classes in the project: the [Ldap Authentication Service](https://github.com/hgdiaz/aspnetcore.ldap/tree/master/aspnetcore.ldap/aspnetcore.ldap/Services)
+
+
+
+## Meta
+
+This is an open source project that welcomes contributions/suggestions/bug reports from those who use it. If you have any ideas on how to improve the sample, please [post an issue here on github](https://github.com/hgdiaz/aspnetcore.ldap/issues). 
